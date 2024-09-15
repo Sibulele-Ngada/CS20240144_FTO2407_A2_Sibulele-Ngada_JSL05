@@ -29,9 +29,9 @@ function generatePlaylist(guardians, songs) {
     const playlistDiv = document.getElementById('playlists');
 
     for (let i = 0; i < Object.keys(guardians).length; i++){
-        const playlist = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.title} by ${song.artist}`);
+        const playlistTitles = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.title}`);
+        const playlistArtists = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.artist}`);
         
-
         const guardianDiv = document.createElement('div');
         playlistDiv.appendChild(guardianDiv);
         const att = document.createAttribute("class");
@@ -44,31 +44,19 @@ function generatePlaylist(guardians, songs) {
 
         const guardianPlaylist = document.createElement('ul');
         guardianDiv.appendChild(guardianPlaylist);
-        playlist.forEach(song => {
+        playlistTitles.forEach(song => {
             const songList = document.createElement('li');
             const att = document.createAttribute("class");
             att.value = "song";
             songList.setAttributeNode(att);
             const attr = document.createAttribute("class");
-            attr.value = "playlist";
+            attr.value = "song-title";
             songList.setAttributeNode(attr);
             songList.textContent = song;
             guardianPlaylist.appendChild(songList);
         });
     }
-  
-    /*
 
-    
-    
-    starLordDiv.appendChild(starLordPlaylist);
-    starLordList.forEach(song => {
-        const songList = document.createElement('li');
-        songList.textContent = song;
-        starLordPlaylist.appendChild(songList);
-    });
-
-    */
 }
 
 // Call generatePlaylist and display the playlists for each Guardian
