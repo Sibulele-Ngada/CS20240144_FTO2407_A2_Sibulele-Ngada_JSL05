@@ -19,6 +19,9 @@ const songs = [
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
+    "Drax": "R&B",
+    "Rocket": "Rock",
+    "Groot": "Pop"
     // Add preferences for Drax, Rocket, and Groot
 };
 
@@ -31,6 +34,7 @@ function generatePlaylist(guardians, songs) {
     for (let i = 0; i < Object.keys(guardians).length; i++){
         const playlistTitles = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.title}`);
         const playlistArtists = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.artist}`);
+        const playlist = songs.filter(song => song.genre === Object.values(guardians)[i]);
         
         const guardianDiv = document.createElement('div');
         playlistDiv.appendChild(guardianDiv);
@@ -44,22 +48,26 @@ function generatePlaylist(guardians, songs) {
 
         const guardianPlaylist = document.createElement('ul');
         guardianDiv.appendChild(guardianPlaylist);
-        playlistTitles.forEach(song => {
+        playlist.forEach(song => {
             const songList = document.createElement('li');
             const att = document.createAttribute("class");
             att.value = "song";
             songList.setAttributeNode(att);
             guardianPlaylist.appendChild(songList);
 
-
             const songTitle = document.createElement('span');
             const attr = document.createAttribute("class");
             attr.value = "song-title";
             songTitle.setAttributeNode(attr);
             songList.appendChild(songTitle);
-        });
-    }
+            
+            songTitle.textContent = song.title;
 
+            songList.append(` by ${song.artist}`);
+        });
+
+        
+    }
 }
 
 // Call generatePlaylist and display the playlists for each Guardian
