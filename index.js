@@ -34,28 +34,27 @@ function generatePlaylist(guardians, songs) {
 
         const guardianDiv = document.createElement('div');
         playlistDiv.appendChild(guardianDiv);
-        // Create a class attribute:
         const att = document.createAttribute("class");
-        // Set a value of the class attribute
         att.value = "playlist";
         guardianDiv.setAttributeNode(att);
         
         const guardianTitle = document.createElement('h3');
-        guardianTitle.textContent = `${Object.keys(guardians)[i]}'s Playlist`;
-        
+        guardianTitle.textContent = `${Object.keys(guardians)[i]}'s Playlist`;  
         guardianDiv.appendChild(guardianTitle);
 
- 
+        const guardianPlaylist = document.createElement('ul');
+        guardianDiv.appendChild(guardianPlaylist);
+        playlist.forEach(song => {
+            const songList = document.createElement('li');
+            songList.textContent = song;
+            guardianPlaylist.appendChild(songList);
+        });
     }
   
     /*
 
     
     
-    
-    starLordDiv.appendChild(starLordTitle);
-    
-    const starLordPlaylist = document.createElement('ul');
     starLordDiv.appendChild(starLordPlaylist);
     starLordList.forEach(song => {
         const songList = document.createElement('li');
