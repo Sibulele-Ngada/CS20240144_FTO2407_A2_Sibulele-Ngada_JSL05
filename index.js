@@ -49,11 +49,14 @@ function generatePlaylist(guardians, songs) {
             const att = document.createAttribute("class");
             att.value = "song";
             songList.setAttributeNode(att);
+            guardianPlaylist.appendChild(songList);
+
+
+            const songTitle = document.createElement('span');
             const attr = document.createAttribute("class");
             attr.value = "song-title";
-            songList.setAttributeNode(attr);
-            songList.textContent = song;
-            guardianPlaylist.appendChild(songList);
+            songTitle.setAttributeNode(attr);
+            songList.appendChild(songTitle);
         });
     }
 
