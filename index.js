@@ -31,8 +31,8 @@ function generatePlaylist(guardians, songs) {
     const playlistDiv = document.getElementById('playlists');
 
     for (let i = 0; i < Object.keys(guardians).length; i++){
-        const mappedPlaylist = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.title} by ${song.artist}`);
-        const playlist = songs.filter(song => song.genre === Object.values(guardians)[i]);
+        const titlePlaylist = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.title}`);
+        const artistPlaylist = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.artist}`);
         
         const guardianDiv = document.createElement('div');
         playlistDiv.appendChild(guardianDiv);
@@ -46,7 +46,7 @@ function generatePlaylist(guardians, songs) {
 
         const guardianPlaylist = document.createElement('ul');
         guardianDiv.appendChild(guardianPlaylist);
-        playlist.forEach(song => {
+        for(let j = 0; j <titlePlaylist.length; j++){
             const songList = document.createElement('li');
             const att = document.createAttribute("class");
             att.value = "song";
@@ -58,9 +58,9 @@ function generatePlaylist(guardians, songs) {
             attr.value = "song-title";
             songTitle.setAttributeNode(attr);
             songList.appendChild(songTitle);          
-            songTitle.textContent = song.title;
-            songList.append(` by ${song.artist}`);
-        });       
+            songTitle.textContent = titlePlaylist[j];
+            songList.append(` by ${artistPlaylist[j]}`);
+        };       
     }
 }
 
