@@ -46,6 +46,12 @@ function generatePlaylist(guardians, songs) {
         guardianDiv.appendChild(guardianPlaylist);
         playlist.forEach(song => {
             const songList = document.createElement('li');
+            const att = document.createAttribute("class");
+            att.value = "song";
+            songList.setAttributeNode(att);
+            const attr = document.createAttribute("class");
+            attr.value = "playlist";
+            songList.setAttributeNode(attr);
             songList.textContent = song;
             guardianPlaylist.appendChild(songList);
         });
