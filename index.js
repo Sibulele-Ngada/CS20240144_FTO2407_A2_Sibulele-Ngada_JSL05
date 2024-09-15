@@ -28,18 +28,33 @@ function generatePlaylist(guardians, songs) {
     // Get playlist container
     const playlistDiv = document.getElementById('playlists');
 
-    for (const guardianGenre of Object.values(guardians)){
-        const playlist = songs.filter(song => song.genre === guardianGenre).map(song => `${song.title} by ${song.artist}`);
-        console.log(playlist);
+    for (let i = 0; i < Object.keys(guardians).length; i++){
+        const playlist = songs.filter(song => song.genre === Object.values(guardians)[i]).map(song => `${song.title} by ${song.artist}`);
+        
+
+        const guardianDiv = document.createElement('div');
+        playlistDiv.appendChild(guardianDiv);
+        // Create a class attribute:
+        const att = document.createAttribute("class");
+        // Set a value of the class attribute
+        att.value = "playlist";
+        guardianDiv.setAttributeNode(att);
+        
+        const guardianTitle = document.createElement('h3');
+        guardianTitle.textContent = `${Object.keys(guardians)[i]}'s Playlist`;
+        
+        guardianDiv.appendChild(guardianTitle);
+
+ 
     }
   
     /*
 
-    const starLordDiv = document.createElement('div');
-    const starLordTitle = document.createElement('h3');
-    starLordTitle.textContent = `Star-Lord's Playlist`;
+    
+    
+    
     starLordDiv.appendChild(starLordTitle);
-    playlistDiv.appendChild(starLordDiv);
+    
     const starLordPlaylist = document.createElement('ul');
     starLordDiv.appendChild(starLordPlaylist);
     starLordList.forEach(song => {
